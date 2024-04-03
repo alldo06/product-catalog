@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "product-catalog",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,9 +10,32 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@vueuse/nuxt": "^9.13.0",
+    "eslint": "^8.57.0",
+    "nuxt-api-party": "^1.1.1",
+    "sass": "^1.63.6"
+  },
   "dependencies": {
+    "@nuxt/image": "^1.5.0",
+    "@nuxtjs/eslint-config": "^12.0.0",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@pinia/nuxt": "^0.5.1",
+    "pinia": "^2.0.36",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.15.1",
+    "keen-slider": "^6.8.6",
     "nuxt": "^3.11.1",
+    "nuxt-icons": "^3.2.1",
+    "prettier": "^3.0.0",
+    "prettier-eslint": "^15.0.1",
+    "vite-plugin-eslint": "^1.8.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue-select": "^4.0.0-beta.6"
   }
 }

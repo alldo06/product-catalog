@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family:
+      'Inter',
+      'Open Sans',
+      -apple-system,
+      system-ui,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Roboto',
+      'Helvetica Neue',
+      Arial,
+      sans-serif;
+  }
+
+  @layer utilities {
+    .container {
+      width: 92%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (min-width: 640px) {
+      .container {
+        max-width: 640px;
+      }
+    }
+    @media (min-width: 768px) {
+      .container {
+        max-width: 768px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .container {
+        max-width: 960px;
+      }
+    }
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px;
+      }
+    }
+    @media (min-width: 1400px) {
+      .container {
+        max-width: 1320px;
+      }
+    }
+  }
+
+  .overlay-background {
+    background: linear-gradient(
+      93deg,
+      rgba(5, 5, 14, 0.87) 8.87%,
+      #010e1d 13.4%,
+      rgba(0, 0, 0, 0.69) 39.75%,
+      rgba(1, 0, 40, 0) 71.51%
+    );
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+}
