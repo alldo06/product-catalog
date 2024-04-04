@@ -47,8 +47,8 @@ export default defineNuxtConfig({
 
   apiParty: {
     endpoints: {
-      dataApi: {
-        url: '',
+      productsApi: {
+        url: 'https://api.escuelajs.co/',
         // Global headers sent with each request
         headers: {
           accept: 'application/json'
