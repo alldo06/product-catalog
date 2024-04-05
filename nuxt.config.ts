@@ -26,6 +26,10 @@ export default defineNuxtConfig({
     '@hypernym/nuxt-gsap'
   ],
 
+  image: {
+    provider: 'netlifyImageCdn'
+  },
+
   gsap: {
     extraPlugins: {
       scrollTrigger: true,
