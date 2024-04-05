@@ -29,6 +29,13 @@
             <NuxtIcon name="search" filled />
           </label>
         </div>
+        <ul class="nav-list flex justify-center items-center gap-4">
+          <li class="nav-link">
+            <NuxtLink to="/wishlist"
+              ><NuxtIcon name="love" filled class="text-2xl"
+            /></NuxtLink>
+          </li>
+        </ul>
       </div>
     </div>
     <div

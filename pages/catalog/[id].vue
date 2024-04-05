@@ -173,9 +173,9 @@
               <button
                 class="border border-black border-opacity-50 rounded p-2 size-10 hover:bg-primary-jasper hover:border-primary-jasper flex justify-center items-center fav-btn"
                 :class="{
-                  'fav-active': favorite
+                  'fav-active': wishlist
                 }"
-                @click="favorite = !favorite"
+                @click="updateWishlist"
               >
                 <NuxtIcon name="love" filled class="text-2xl" />
               </button>
@@ -218,11 +218,14 @@
 
 <script setup>
 import { useKeenSlider } from 'keen-slider/vue'
+import { useGlobalStore } from '~/store/global'
 
 const route = useRoute()
 const currentIndex = ref(0)
 const quantity = ref(0)
-const favorite = ref(false)
+const wishlist = ref(false)
+const global = useGlobalStore()
+console.log(global.wishlist)
 
 const colours = ref(['blue', 'red'])
 const colorIndex = ref(null)
@@ -241,6 +244,10 @@ if (error.value) {
   })
 }
 
+wishlist.value = !!global.wishlist.find(
+  item => item.id === productDetail.value.id
+)
+
 const [carousel, slider] = useKeenSlider({
   slides: {
     perView: 1
@@ -251,20 +258,13 @@ const [carousel, slider] = useKeenSlider({
   }
 })
 
-// const productDetail = ref({
-//   id: 1,
-//   title: 'Havic HV G-92 Gamepad',
-//   description:
-//     'PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.',
-//   image: '/assets/img/havic1.png',
-//   price: 192,
-//   rating: 4
-// })
-
-console.log(productDetail.value)
-
-const onInputQty = val => {
+const onInputQty = () => {
   if (quantity.value < 0) quantity.value = 0
+}
+
+const updateWishlist = () => {
+  wishlist.value = !wishlist.value
+  global.addToWishlist(productDetail.value)
 }
 </script>
 

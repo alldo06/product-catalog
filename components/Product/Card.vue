@@ -1,11 +1,13 @@
 <template>
-  <NuxtLink
-    :to="`/catalog/${data.id}`"
-    class="card rounded-lg flex flex-col gap-4 h-fit"
-    :alt="data.title"
-    :title="data.title"
-  >
-    <div class="card-image bg-secondary rounded overflow-hidden h-3/5">
+  <div class="card rounded-lg flex flex-col gap-4 h-fit">
+    <div class="card-image bg-secondary rounded overflow-hidden h-3/5 relative">
+      <button
+        v-if="showDeleteButton"
+        class="absolute right-2 top-2 p-1 bg-white rounded-full text-xl"
+        @click.prevent="removeWishlist"
+      >
+        <NuxtIcon name="icon-delete" filled class="" />
+      </button>
       <NuxtImg
         v-if="data.images.length > 0"
         :src="data?.images[0] || '/'"
@@ -16,30 +18,46 @@
       <p v-else class="text-black font-medium text-center m-auto">404</p>
     </div>
 
-    <div class="card-header flex flex-col gap-2">
+    <NuxtLink
+      :to="`/catalog/${data.id}`"
+      :alt="data.title"
+      :title="data.title"
+      class="card-header flex flex-col gap-2"
+    >
       <p class="text-base title text-black font-medium line-clamp-2">
         {{ data?.title || 'Dummy' }}
       </p>
       <p class="text-base text-primary-jasper font-medium">
         ${{ data?.price || 'Dummy' }}
       </p>
-      <p class="flex gap-2 items-center">
+      <p v-if="!isWishlist" class="flex gap-2 items-center">
         <NuxtIcon name="star" filled />
-        <span class="text-black text-sm">
-          {{ data?.rating.rate }} ({{ data.rating.count }} Reviews)
-        </span>
+        <span class="text-black text-sm"> 4 (127 Reviews) </span>
       </p>
-    </div>
-  </NuxtLink>
+    </NuxtLink>
+  </div>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     default: () => {}
+  },
+  isWishlist: {
+    type: Boolean,
+    default: false
+  },
+  showDeleteButton: {
+    type: Boolean,
+    default: false
   }
 })
+
+const emit = defineEmits(['updateWishlist'])
+const removeWishlist = () => {
+  emit('updateWishlist', props.data)
+}
 </script>
 
 <style lang="scss" scoped>
