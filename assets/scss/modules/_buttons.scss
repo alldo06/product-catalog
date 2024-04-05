@@ -1,0 +1,97 @@
+@layer components {
+  // use with media query if you need responsiveness
+  // e.g.: btn btn-rounded-sm md:btn-rounded-md lg:btn-rounded-lg
+  .btn {
+    @apply flex rounded-md text-center whitespace-nowrap justify-center items-center cursor-pointer select-none font-semibold;
+
+    &.btn-lg {
+      @apply px-4 py-4 text-base;
+    }
+    &.btn-md {
+      @apply px-3 py-2.5 text-sm;
+    }
+    &.btn-sm {
+      @apply p-2 text-xs;
+    }
+
+    &.btn-rounded-sm {
+      @apply rounded-full h-5 w-5 text-xs p-0;
+    }
+    &.btn-rounded-md {
+      @apply rounded-full h-7 w-7 text-lg p-0;
+    }
+    &.btn-rounded-lg {
+      @apply rounded-full h-10 w-10 text-2xl p-0;
+    }
+  }
+
+  // for primary button
+  .btn-primary-reverse {
+    @apply border bg-transparent border-primary-jasper text-primary;
+    @apply focus:bg-primary-jasper;
+    @apply focus:text-white;
+    @apply hover:bg-primary-jasper;
+    @apply hover:text-white;
+    @apply active:bg-primary-jasper;
+    @apply active:text-white;
+    @apply disabled:btn-primary-disabled;
+  }
+  // mostly for rounded button icon
+  .btn-primary {
+    @apply border bg-primary-jasper border-primary-jasper text-lotion;
+    @apply focus:bg-primary-jasper focus:opacity-70;
+    @apply hover:bg-primary-jasper hover:opacity-70;
+    @apply active:bg-primary-jasper;
+    @apply disabled:btn-primary-disabled;
+  }
+
+  .btn-primary-disabled {
+    @apply bg-transparent border-black-300 text-black-300 cursor-not-allowed;
+  }
+
+  // for secondary button
+  .btn-secondary {
+    @apply border border-white bg-transparent text-white;
+    @apply focus:bg-white focus:text-primary;
+    @apply hover:bg-white hover:text-primary;
+    @apply active:bg-primary-jasper;
+    @apply disabled:btn-secondary-disabled;
+  }
+  .btn-secondary-disabled {
+    @apply border-bw-300 text-bw-300 cursor-not-allowed;
+  }
+
+  // for text button
+  .btn-text--primary {
+    @apply text-primary font-semibold text-base leading-normal;
+  }
+
+  // for link button
+  .btn-link--primary {
+    @apply text-primary font-semibold underline;
+  }
+
+  // for button with icon
+  .btn-icon--transparent {
+    @apply btn px-3 py-2.5 text-sm btn-primary-reverse w-fit gap-2;
+  }
+
+  // for predefined size button
+  .btn-sized--primary {
+    @apply btn px-3 py-2.5 text-sm md:px-4 md:py-4 md:text-base border btn-primary w-fit;
+  }
+  .btn-sized--primary--desktop {
+    @apply btn-sized--primary;
+    @apply hidden sm:block;
+  }
+  .btn-sized--primary--mobile {
+    @apply btn-sized--primary;
+    @apply block sm:hidden mx-auto;
+  }
+  .btn-sized--white--transparent {
+    @apply btn px-3 py-2.5 text-sm md:px-4 md:py-4 md:text-base btn-secondary w-max;
+  }
+  .btn-sized--primary--transparent {
+    @apply btn px-3 py-2.5 text-sm md:px-4 md:py-4 md:text-base btn-primary-reverse w-max;
+  }
+}
