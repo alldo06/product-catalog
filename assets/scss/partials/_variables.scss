@@ -1,0 +1,44 @@
+// Typography
+// ------------------------------------------------------------------------ //
+$base_px_font_size: 16;
+$base_font_size: $base_px_font_size * 1px;
+$base_line_height: 1.6;
+$font_serif:
+  'Poppins',
+  'Open Sans',
+  -apple-system,
+  system-ui,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  'Roboto',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+$base_font_family: $font_serif;
+$space: $base_line_height * 1em;
+
+// Colors
+// ------------------------------------------------------------------------ //
+
+$palettes: (
+  'primary': #db4444,
+  'black': #000,
+  'lotion': #fafafa,
+  'secondary': '#f5f5f5',
+  'white': #fff
+);
+
+@function palette($color) {
+  @if map-has-key($palettes, $color) {
+    @return map-get($palettes, $color);
+  } @else {
+    @warn "key `#{$color}` not found. Falling back to #000 (black)";
+    @return #000;
+  }
+}
+
+$primary: palette('primary');
+$black: #000;
+$lotion: palette('lotion');
+$secondary: palette('secondary');
+$white: palette('white');

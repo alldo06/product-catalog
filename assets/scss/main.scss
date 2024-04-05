@@ -3,20 +3,11 @@
 @tailwind utilities;
 
 @import 'modules/modules';
+@import 'partials/variables';
 
 @layer base {
   body {
-    font-family:
-      'Poppins',
-      'Open Sans',
-      -apple-system,
-      system-ui,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      'Roboto',
-      'Helvetica Neue',
-      Arial,
-      sans-serif;
+    font-family: $base_font_family;
   }
 
   @layer utilities {
@@ -71,7 +62,7 @@
     width: 20px;
     height: 40px;
     border-radius: 6px;
-    background-color: #db4444;
+    background-color: palette('primary');
   }
 
   .empty-state__container {

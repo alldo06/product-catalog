@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-nostyle breadcrumbs text-black-500">
+  <ul class="breadcrumbs">
     <li>
       <NuxtLink :to="'/'" aria-label="Go Home Page">Home</NuxtLink>
     </li>
@@ -86,31 +86,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 14px;
-  align-items: center;
-  text-transform: capitalize;
-  // margin-top: 40px;
-  margin-bottom: 40px;
-
-  .icon-crumbs {
-    display: inline-block;
-    padding: 0 4px;
-  }
-
-  .divider {
-    margin: 0 10px;
-  }
-
-  li a {
-    color: #808080;
-
-    &:hover {
-      color: #db4444;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

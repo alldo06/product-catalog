@@ -13,15 +13,23 @@
         :stagger="0.3"
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 py-14"
       >
-        <ProductCard
-          v-for="product in wishlistProducts"
-          :key="product.id"
-          :data="product"
-          :is-wishlist="true"
-          :show-delete-button="true"
-          class="invisible"
-          @update-wishlist="removeWishlist"
-        />
+        <template v-if="wishlistProducts.length > 0">
+          <ProductCard
+            v-for="product in wishlistProducts"
+            :key="product.id"
+            :data="product"
+            :is-wishlist="true"
+            :show-delete-button="true"
+            class="invisible"
+            @update-wishlist="removeWishlist"
+          />
+        </template>
+        <div
+          v-else
+          class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 py-5 text-center text-black text-base md:text-2xl"
+        >
+          <p>There are no wishlist yet.</p>
+        </div>
       </UtilsScrollFadeIn>
       <Product
         title="Explore other products"

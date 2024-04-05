@@ -60,13 +60,15 @@ const showSearchInput = ref(false)
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/scss/partials/_variables.scss';
+
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .logo {
-    color: #000;
+    color: palette('black');
     font-size: 24px;
     font-weight: bold;
   }
@@ -74,7 +76,22 @@ const showSearchInput = ref(false)
 
 .nav-list {
   .nav-link {
-    padding: 16px 0;
+    a {
+      display: block;
+      padding: 16px 0;
+
+      &:hover {
+        color: palette('primary');
+
+        :deep(.nuxt-icon) {
+          svg {
+            path {
+              fill: palette('primary') !important;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -82,7 +99,7 @@ const showSearchInput = ref(false)
   align-items: center;
 
   .search-label {
-    background: #f5f5f5;
+    background: palette('secondary');
   }
 
   .search-input {
