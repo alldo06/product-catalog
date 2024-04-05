@@ -6,11 +6,20 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@pinia/nuxt',
+    'nuxt-icons',
     '@nuxtjs/eslint-module',
     './modules/auto-import-eslint.ts',
     'nuxt-api-party',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@hypernym/nuxt-gsap'
   ],
+
+  gsap: {
+    extraPlugins: {
+      scrollTrigger: true,
+      scrollTo: true
+    }
+  },
 
   imports: {
     dirs: ['composables', 'composables/**']
@@ -36,6 +45,7 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
+      Poppins: [300, 400, 500, 600, 700, 900],
       'Open+Sans': [300, 400, 500, 600, 700, 900]
     },
     display: 'swap',
@@ -48,7 +58,7 @@ export default defineNuxtConfig({
   apiParty: {
     endpoints: {
       productsApi: {
-        url: 'https://api.escuelajs.co/',
+        url: 'https://api.escuelajs.co/api/v1',
         // Global headers sent with each request
         headers: {
           accept: 'application/json'
