@@ -27,7 +27,7 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    provider: 'netlifyImageCdn'
+    provider: 'ipx'
   },
 
   gsap: {
