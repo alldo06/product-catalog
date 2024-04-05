@@ -1,20 +1,94 @@
 <template>
-  <nav class="bg-white border border-b border-[#A5A5A5] w-full sticky top-0">
-    <ul
-      class="nav-list container m-auto flex justify-center items-center gap-4"
+  <nav
+    class="bg-white sm:border-b sm:border-[#A5A5A5] w-full sticky top-0 z-30"
+  >
+    <div class="navigation container">
+      <NuxtLink to="/" class="logo">SUITE</NuxtLink>
+      <div class="flex gap-2">
+        <ul class="nav-list flex justify-center items-center gap-4">
+          <li class="nav-link"><NuxtLink to="/">Home</NuxtLink></li>
+          <li class="nav-link"><NuxtLink to="/catalog">Catalog</NuxtLink></li>
+        </ul>
+        <div
+          class="search-wrapper px-4 py-2 hidden sm:flex"
+          :class="{ 'bg-secondary': showSearchInput }"
+        >
+          <input
+            v-show="showSearchInput"
+            id="search"
+            type="text"
+            name="search"
+            placeholder="What are you looking for?"
+            class="bg-secondary rounded focus:outline-none pr-2 search-input"
+          />
+          <label
+            for="search"
+            class="search-label cursor-pointer"
+            @click.prevent="showSearchInput = !showSearchInput"
+          >
+            <NuxtIcon name="search" filled />
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      class="search-wrapper bg-secondary p-4 flex sm:hidden border-t border-[#A5A5A5]"
     >
-      <li class="nav-link"><NuxtLink to="/">Home</NuxtLink></li>
-      <li class="nav-link"><NuxtLink to="/catalog">Catalog</NuxtLink></li>
-    </ul>
+      <input
+        id="search"
+        type="text"
+        name="search"
+        placeholder="What are you looking for?"
+        class="bg-secondary rounded focus:outline-none pr-2 search-input w-full"
+      />
+      <label for="search" class="search-label cursor-pointer">
+        <NuxtIcon name="search" filled />
+      </label>
+    </div>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+const showSearchInput = ref(false)
+</script>
 
 <style lang="scss" scoped>
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
 .nav-list {
   .nav-link {
     padding: 16px 0;
+  }
+}
+
+.search-wrapper {
+  align-items: center;
+
+  .search-label {
+    background: #f5f5f5;
+  }
+
+  .search-input {
+    @media screen and (min-width: 768px) {
+      width: 100%;
+      animation: widerwidth 0.5s;
+    }
+  }
+
+  @keyframes widerwidth {
+    0% {
+      width: 0%;
+    }
   }
 }
 </style>

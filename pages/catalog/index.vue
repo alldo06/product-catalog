@@ -1,136 +1,91 @@
 <template>
-  <main role="main" class="main">
-    <div class="container p-4">
-      <h1 class="text-center text-white text-lg mb-2">Products Catalog</h1>
-      <p class="text-center text-white text-sm">
-        {{ products.length }} products available
-      </p>
-    </div>
-
-    <section class="container grid grid-cols-1 sm:grid-cols-4 gap-5 my-10">
-      <div class="col-span-1 text-[#c9c9c9]">
-        <div class="pb-2">
-          <label for="search" class="hidden">Search</label>
-          <input
-            id="search"
-            v-model="searchProduct"
-            type="search"
-            name="search"
-            class="px-4 py-2 w-full focus:outline-none bg-black border border-transparent focus:border-lime-800 rounded"
-            placeholder="Search by product name"
-            @keyup="onInputSearchSuggestion"
-            @input="onInputSearchSuggestion"
-          />
+  <main role="main" class="main py-20">
+    <section class="container">
+      <div class="page-header">
+        <div class="flex gap-2.5 mb-5 items-center">
+          <div class="block-jasper"></div>
+          <h2 class="text-primary-jasper">Our Products</h2>
         </div>
-        <p class="p-3 border-b border-[#6d6d6d]">Category</p>
-        <ul class="col-span-1 text-[#c9c9c9] py-3">
-          <li
-            v-for="category in categories"
-            :key="category.id"
-            class="text-[#9e9e9e] hover:text-[#c9c9c9] hover:bg-lime-800"
-          >
-            <button
-              class="p-3 w-full text-left"
-              @click.prevent="onFilterCategory(category.id)"
-            >
-              {{ category.name }}
-            </button>
-          </li>
-        </ul>
+        <h1 class="text-2xl md:text-4xl text-black font-semibold">
+          Explore Our Products
+        </h1>
       </div>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 col-span-3"
+
+      <UtilsScrollFadeIn
+        :duration="1"
+        :translate-y="50"
+        :stagger="0.3"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 py-14"
       >
         <ProductCard
           v-for="product in products"
           :key="product.id"
           :data="product"
+          class="invisible"
         />
-      </div>
+      </UtilsScrollFadeIn>
     </section>
   </main>
 </template>
 
 <script setup>
-const route = useRoute()
-const router = useRouter()
+// const products = ref([
+//   {
+//     id: 1,
+//     title: 'HAVIT HV-G92 Gamepad',
+//     slug: 'havit-hv-g92-gamepad',
+//     description: 'lorem ipsum',
+//     image: '/assets/img/joystick.png',
+//     price: 120,
+//     rating: 4
+//   },
+//   {
+//     id: 2,
+//     title: 'AK-900 Wired Keyboard',
+//     slug: 'ak-900-wired-keyboard',
+//     description: 'lorem ipsum',
+//     image: '/assets/img/joystick.png',
+//     price: 960,
+//     rating: 4
+//   },
+//   {
+//     id: 3,
+//     title: 'GP11 Shooter USB Gamepad',
+//     slug: 'gp11-shooter-usb-gamepad',
+//     description: 'lorem ipsum',
+//     image: '/assets/img/joystick.png',
+//     price: 550,
+//     rating: 4
+//   },
+//   {
+//     id: 4,
+//     title: 'Quilted Satin Jacket',
+//     slug: 'quilted-satin-jacket',
+//     description: 'lorem ipsum',
+//     image: '/assets/img/joystick.png',
+//     price: 750,
+//     rating: 4
+//   }
+// ])
 
-const products = ref([])
-const categories = ref([])
-const categoryId = ref(route.query.categoryId || null)
-const searchProduct = ref(route.query.search || '')
-
-const getProducts = async () => {
-  const response = await useProductsApiData('/api/v1/products', {
-    query: {
-      categoryId: categoryId.value,
-      title: searchProduct.value
-    },
-    watch: [categoryId]
-  })
-
-  products.value = response.data.value
-}
-
-const getCategories = async () => {
-  const response = await useProductsApiData('/api/v1/categories')
-
-  categories.value = response.data.value
-}
-
-await Promise.all([getProducts(), getCategories()])
-
-// products.value = productsApi.data.value
-// categories.value = categoriesApi.data.value
-
-const onFilterCategory = value => {
-  const currentQuery = route.query
-  delete currentQuery.categoryId
-  categoryId.value = value
-
-  router.push({
-    query: {
-      ...currentQuery,
-      categoryId: value
-    }
-  })
-
-  // await getProducts()
-}
-
-const onInputSearchSuggestion = useDebounce(val => {
-  if (
-    val.keyCode === 18 ||
-    val.keyCode === 17 ||
-    val.keyCode === 16 ||
-    val.keyCode === 91
-  ) {
-    return
+const { data: products } = await useProductsApiData('/products', {
+  query: {
+    offset: 0,
+    limit: 12
   }
-
-  const currentQuery = { ...route.query }
-  delete currentQuery.search
-
-  const newFilter = {}
-  newFilter.search = searchProduct.value
-
-  router.push({
-    query: {
-      ...currentQuery,
-      ...newFilter
+})
+const mappedData = products.value.map(item => {
+  return {
+    ...item,
+    slug: item.title.replace(/\s+/g, '-').toLowerCase(),
+    rating: {
+      rate: Math.floor(Math.random() * 5) + 1,
+      count: Math.floor(Math.random() * 200) + 1
     }
-  })
-
-  // loadingSuggestion.value = true
-  // await getCompanies(true)
-}, 500)
-
-watch(
-  () => route.query,
-  () => {
-    getProducts()
   }
-)
+})
+products.value = mappedData
+console.log(products.value)
 </script>
 
 <style lang="scss" scoped></style>
