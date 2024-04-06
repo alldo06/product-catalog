@@ -86,6 +86,10 @@ const autoplaySlider = () => {
     }
   }, 3000)
 }
+
+onUnmounted(() => {
+  clearInterval(interval.value)
+})
 </script>
 
 <style lang="scss" scoped>
