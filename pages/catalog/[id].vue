@@ -210,7 +210,7 @@
       </UtilsScrollFadeIn>
     </section>
 
-    <section class="py-20 container">
+    <section class="py-10 md:py-20 container">
       <Product subtitle="Related Products" />
     </section>
   </main>

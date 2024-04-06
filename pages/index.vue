@@ -1,7 +1,7 @@
 <template>
   <main role="main" class="main">
     <Banner />
-    <section class="container py-20">
+    <section class="container py-10 md:py-20">
       <Product :with-cta="true" />
     </section>
   </main>

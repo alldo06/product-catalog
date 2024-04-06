@@ -1,6 +1,6 @@
 <template>
-  <main role="main" class="main py-20">
-    <section class="container">
+  <main role="main" class="main container">
+    <section class="py-10 md:py-20">
       <UtilsScrollFadeIn :duration="0.7" :translate-y="50" class="page-header">
         <h1 class="text-black text-xl">
           Wishlist ({{ wishlistProducts.length }})
@@ -11,7 +11,7 @@
         :duration="1"
         :translate-y="50"
         :stagger="0.3"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 py-14"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 py-7 md:py-14"
       >
         <template v-if="wishlistProducts.length > 0">
           <ProductCard
@@ -31,6 +31,9 @@
           <p>There are no wishlist yet.</p>
         </div>
       </UtilsScrollFadeIn>
+    </section>
+
+    <section class="py-10 md:py-20">
       <Product
         title="Explore other products"
         subtitle="Just For You"

@@ -1,5 +1,5 @@
 <template>
-  <main role="main" class="main py-20">
+  <main role="main" class="main py-10 md:py-20">
     <section class="container">
       <Product :items-count="12" />
     </section>
